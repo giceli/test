@@ -1,12 +1,21 @@
 // ==UserScript==
 // @name         时长计算
-// @namespace    http://tampermonkey.net/
-// @version      0.3
-// @description  try to take over the world!
+// @namespace    https://github.com/giceli/test
+// @version      1.0.0.0
+// @description  just for fun
 // @author       ABin
 // @match        https://oa.hygon.cn/hr/HGWebCalen.nsf/index.html?open
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @grant        none
+// @run-at       document-body
+// @grant        unsafeWindow
+// @grant        GM_xmlhttpRequest
+// @grant        GM_setClipboard
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @grant        GM_openInTab
+// @grant        GM_info
+// @grant        GM_registerMenuCommand
+// @grant        GM_cookie
 // @updateURL    https://raw.githubusercontent.com/giceli/test/master/time_record.user.js
 // ==/UserScript==
 
@@ -199,4 +208,5 @@ let d = new Date();
     table.appendChild(addTr('total',':',total,'',''))
     return table
 }
+
 
