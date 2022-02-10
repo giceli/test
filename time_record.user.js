@@ -7,7 +7,7 @@
 // @match        https://oa.hygon.cn/hr/HGWebCalen.nsf/index.html?open
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/giceli/test/master/%E6%97%B6%E9%95%BF%E8%AE%A1%E7%AE%97.user.js
+// @updateURL    https://raw.githubusercontent.com/giceli/test/master/time_record.user.js
 // ==/UserScript==
 
 (function() {
