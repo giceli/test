@@ -1,7 +1,8 @@
+
 // ==UserScript==
 // @name         时长计算
 // @namespace    https://github.com/giceli/test
-// @version      1.0.0.0
+// @version      0.1
 // @description  just for fun
 // @author       ABin
 // @match        https://oa.hygon.cn/hr/HGWebCalen.nsf/index.html?open
@@ -16,7 +17,7 @@
 // @grant        GM_info
 // @grant        GM_registerMenuCommand
 // @grant        GM_cookie
-// @updateURL    https://raw.githubusercontent.com/giceli/test/master/time_record.user.js
+// @updateURL    https://raw.githubusercontent.com/giceli/test/main/time_record.user.js
 // ==/UserScript==
 
 (function() {
@@ -64,7 +65,8 @@
         btn[0].onclick = function (){
             if(floatdiv2.style.display == 'block'){
                 floatdiv2.innerHTML=''
-                floatdiv2.appendChild(show())
+                let table = show()
+                floatdiv2.appendChild(table)
             }
         }
     }
@@ -123,7 +125,8 @@ let d = new Date();
     let year = Number(mon.substring(0,4))
     mon = Number(mon.substring(6,mon.length-1))
 
-    let total = 0;
+    let work_out_total = 0;
+    let work_total = 0;
     let start = 1
     let calendar = document.getElementById('calendar')
     let monthBox = calendar.children[1]
@@ -156,7 +159,7 @@ let d = new Date();
                     let tick = event[1].children[0].innerHTML
                     let work_time = ''
                     let work_out = ''
-                    let work_result = ''
+                    let work_out_result = ''
                     let tick_index = tick.search(/-/i)
 
                     if(tick_index == 1 || tick_index == -1){
@@ -174,29 +177,33 @@ let d = new Date();
                         tick_start = Number(tick_start.substring(0,2)) * 60 + Number(tick_start.substring(3,5));
                         tick_end = Number(tick_end.substring(0,2)) * 60 + Number(tick_end.substring(3,5))
 
+
                         if(week){
                             // 假期
-                            work_time = '\t'
                             work_out = ((tick_end - tick_start)/60).toFixed(2)
+                            work_time = work_out
                             if(work_out < 4){
-                               work_result = 0
+                               work_out_result = 0
                             } else {
-                                work_result = Math.floor(work_out*2)/2
+                                work_out_result = Math.floor(work_out*2)/2
                             }
                         } else {
                             // 工作日
                             work_time = ((tick_end - tick_start)/60).toFixed(2)
                             work_out = (work_time > 9 ? work_time - 9 : 0).toFixed(2)
                             if(work_out < 2){
-                               work_result = 0
+                               work_out_result = 0
                             } else {
-                                work_result = Math.floor(work_out*2)/2
+                                work_out_result = Math.floor(work_out*2)/2
                             }
                         }
-                        total += work_result
-                        work_result = '['+ work_result +']'
+
+                        work_total += Number(work_time)
+
+                        work_out_total += work_out_result
+                        work_out_result = '['+ work_out_result +']'
                     }
-                    table.appendChild(addTr(index,tick,work_time,work_out,work_result,week))
+                    table.appendChild(addTr(index,tick,work_time,work_out,work_out_result,week))
 
                 } else {
                     table.appendChild(addTr(index,'','','','',week))
@@ -205,7 +212,7 @@ let d = new Date();
         }
     }
     table.appendChild(addTr('-------','-------------------------','--------------','--------','--------'))
-    table.appendChild(addTr('total',':',total,'',''))
+    table.appendChild(addTr('total',':',work_total.toFixed(2),'',work_out_total))
     return table
 }
 
