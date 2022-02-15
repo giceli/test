@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         时长计算
 // @namespace    https://github.com/giceli/test
-// @version      0.1
+// @version      0.2
 // @description  just for fun
 // @author       ABin
 // @match        https://oa.hygon.cn/hr/HGWebCalen.nsf/index.html?open
