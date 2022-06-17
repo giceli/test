@@ -153,6 +153,7 @@ function show(){
     mon = Number(mon.substring(6,mon.length-1))
 
     let work_out_total = 0;
+    let work_out_total2 = 0;
     let work_total = 0;
     let start = 1
     let calendar = document.getElementById('calendar')
@@ -214,6 +215,7 @@ function show(){
                         work_total += Number(work_time)
 
                         work_out_total += work_out_result
+                        work_out_total2 += Number(work_out)
                         work_out_result = '['+ work_out_result +']'
                     }
                     table.appendChild(addTr(index,tick,work_time,work_out,work_out_result,week))
@@ -225,6 +227,6 @@ function show(){
         }
     }
     table.appendChild(addTr('-------','-------------------------','--------------','--------','--------'))
-    table.appendChild(addTr('total',':',work_total.toFixed(2),'',work_out_total))
+    table.appendChild(addTr('total',':',work_total.toFixed(2),work_out_total2.toFixed(2),work_out_total))
     return table
 }
