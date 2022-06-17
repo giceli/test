@@ -189,12 +189,11 @@ function show(){
                     let work_out = ''
                     let work_out_result = ''
                     let tick_index = tick.search(/-/i)
-
                     if(tick_index == 1 || tick_index == -1){
                         // the day you not come
                         tick = ''
                     } else {
-                        if(start-1 == day_now){
+                        if(start-1 == day_now && mon == mon_now ){
                             tick = tick.substring(0,tick_index + 2) + hour_now+":"+minute_now
                         }
                         let tick_start = tick.substring(0,tick_index).replace(/(^\s*)|(\s*$)/g, "")
@@ -215,7 +214,9 @@ function show(){
                         work_total += Number(work_time)
 
                         work_out_total += work_out_result
-                        work_out_total2 += Number(work_out)
+                        if (Number(work_out) >= 2){
+                            work_out_total2 += Number(work_out)
+                        }
                         work_out_result = '['+ work_out_result +']'
                     }
                     table.appendChild(addTr(index,tick,work_time,work_out,work_out_result,week))
